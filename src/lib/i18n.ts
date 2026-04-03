@@ -60,6 +60,8 @@ export const translations = {
   price_title:    { en: 'Simple, transparent pricing', hu: 'Egyszerű, átlátható árazás' },
   price_sub:      { en: 'Start free for 14 days. No credit card required. Cancel anytime.', hu: 'Kezdd ingyenesen 14 napig. Bankkártya nem szükséges. Bármikor lemondható.' },
   price_mo:       { en: '/month', hu: '/hó' },
+  price_starter_price: { en: '€9',   hu: '5.990 Ft' },
+price_pro_price:     { en: '€19',  hu: '8.490 Ft' },
   price_popular:  { en: 'Most Popular', hu: 'Legnépszerűbb' },
   price_starter:  { en: 'Starter', hu: 'Kezdő' },
   price_starter_desc: { en: 'For small restaurants and single locations.', hu: 'Kis éttermeknek és egyetlen helyszínnek.' },

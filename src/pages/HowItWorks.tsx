@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../lib/LangContext'
 import { t } from '../lib/i18n'
 import { DOWNLOAD_URL } from '../lib/constants'
@@ -75,9 +77,60 @@ const SECTIONS = [
 
 export default function HowItWorks() {
   const { lang } = useLang()
+  const [lightbox, setLightbox] = useState<string | null>(null)
 
   return (
     <div style={{ background: '#F7F8F6', paddingTop: '60px' }}>
+
+      {/* LIGHTBOX */}
+      {lightbox && (
+        <div
+          onClick={() => setLightbox(null)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 999,
+            background: 'rgba(0,0,0,0.75)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '2rem', cursor: 'zoom-out',
+            backdropFilter: 'blur(4px)',
+          }}
+        >
+          <div style={{
+            position: 'relative', maxWidth: '1000px', width: '100%',
+          }}>
+            <div style={{
+              borderRadius: '14px', overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.15)',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.5)',
+            }}>
+              <div style={{
+                background: '#ECEEE9', height: '32px',
+                display: 'flex', alignItems: 'center', padding: '0 12px', gap: '6px',
+                borderBottom: '1px solid rgba(0,0,0,0.10)',
+              }}>
+                <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FF5F56' }} />
+                <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FFBD2E' }} />
+                <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#27C93F' }} />
+                <div style={{ flex: 1 }} />
+                <span style={{ fontSize: '11px', fontWeight: 600, color: '#4A5250' }}>
+                  HACC<span style={{ color: '#1D9E75' }}>Print</span>
+                </span>
+                <div style={{ flex: 1 }} />
+              </div>
+              <img
+                src={lightbox}
+                alt="Screenshot"
+                style={{ width: '100%', display: 'block' }}
+              />
+            </div>
+            <p style={{
+              textAlign: 'center', marginTop: '12px',
+              fontSize: '13px', color: 'rgba(255,255,255,0.6)',
+            }}>
+              {lang === 'en' ? 'Click anywhere to close' : 'Kattints bárhova a bezáráshoz'}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* HERO */}
       <div style={{
@@ -97,7 +150,7 @@ export default function HowItWorks() {
         </div>
         <h1 style={{
           fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontWeight: 700,
-          letterSpacing: '-1px', color: '#1A1D1B', marginBottom: '1rem',
+          letterSpacing: '-1px', color: '#1A1D1B',
           maxWidth: '700px', margin: '0 auto 1rem',
         }}>
           {t('hiw_hero_title', lang)}
@@ -157,7 +210,6 @@ export default function HowItWorks() {
                 {t(section.bodyKey, lang)}
               </p>
 
-              {/* Feature pill */}
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: '8px',
                 background: section.accentMuted,
@@ -177,13 +229,25 @@ export default function HowItWorks() {
               display: 'flex', flexDirection: 'column', gap: '1rem',
             }}>
               {section.images.map((img, j) => (
-                <div key={j} style={{ position: 'relative' }}>
-                  <div style={{
-                    borderRadius: '14px', overflow: 'hidden',
-                    border: '1px solid rgba(0,0,0,0.10)',
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)',
-                  }}>
-                    {/* Fake titlebar */}
+                <div key={j}>
+                  <div
+                    onClick={() => setLightbox(img)}
+                    style={{
+                      borderRadius: '14px', overflow: 'hidden',
+                      border: '1px solid rgba(0,0,0,0.10)',
+                      boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)',
+                      cursor: 'zoom-in',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.transform = 'scale(1.01)'
+                      e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.08)'
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.transform = 'scale(1)'
+                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)'
+                    }}
+                  >
                     <div style={{
                       background: '#ECEEE9', height: '28px',
                       display: 'flex', alignItems: 'center', padding: '0 10px', gap: '6px',
@@ -204,7 +268,6 @@ export default function HowItWorks() {
                       style={{ width: '100%', display: 'block' }}
                     />
                   </div>
-                  {/* Caption */}
                   <div style={{
                     marginTop: '8px', textAlign: 'center',
                     fontSize: '12px', color: '#8A9490', fontWeight: 500,
@@ -216,12 +279,8 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          {/* Divider tra sezioni */}
           {i < SECTIONS.length - 1 && (
-            <div style={{
-              maxWidth: '1100px', margin: '0 auto',
-              padding: '0 2rem',
-            }}>
+            <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
               <div style={{
                 height: '1px',
                 background: 'linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent)',
@@ -268,6 +327,16 @@ export default function HowItWorks() {
           <p style={{ fontSize: '12px', color: '#8A9490', marginTop: '1rem' }}>
             {t('hero_note', lang)}
           </p>
+          <div style={{ marginTop: '1.5rem' }}>
+            <Link
+              to="/"
+              style={{ fontSize: '13px', color: '#8A9490', textDecoration: 'none' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#1D9E75')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#8A9490')}
+            >
+              ← {lang === 'en' ? 'Back to home' : 'Vissza a főoldalra'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -62,7 +62,7 @@ export default function Pricing() {
               {t('price_starter', lang)}
             </div>
             <div style={{ fontSize: '2.8rem', fontWeight: 700, letterSpacing: '-2px', color: '#1A1D1B', marginBottom: '0.2rem', lineHeight: 1 }}>
-              €9<span style={{ fontSize: '0.95rem', fontWeight: 400, color: '#4A5250', letterSpacing: 0 }}>{t('price_mo', lang)}</span>
+              {t('price_starter_price', lang)}<span style={{ fontSize: '0.95rem', fontWeight: 400, color: '#4A5250', letterSpacing: 0 }}>{t('price_mo', lang)}</span>
             </div>
             <p style={{ fontSize: '13px', color: '#4A5250', marginBottom: '1.75rem', lineHeight: 1.5 }}>
               {t('price_starter_desc', lang)}
@@ -110,7 +110,7 @@ export default function Pricing() {
               {t('price_pro', lang)}
             </div>
             <div style={{ fontSize: '2.8rem', fontWeight: 700, letterSpacing: '-2px', color: '#1A1D1B', marginBottom: '0.2rem', lineHeight: 1 }}>
-              €19<span style={{ fontSize: '0.95rem', fontWeight: 400, color: '#4A5250', letterSpacing: 0 }}>{t('price_mo', lang)}</span>
+              {t('price_pro_price', lang)}<span style={{ fontSize: '0.95rem', fontWeight: 400, color: '#4A5250', letterSpacing: 0 }}>{t('price_mo', lang)}</span>
             </div>
             <p style={{ fontSize: '13px', color: '#4A5250', marginBottom: '1.75rem', lineHeight: 1.5 }}>
               {t('price_pro_desc', lang)}

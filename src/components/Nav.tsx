@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom'
 import { useLang } from '../lib/LangContext'
 import { t } from '../lib/i18n'
 import type { Lang } from '../lib/i18n'
@@ -8,15 +9,24 @@ const LANGS: { code: Lang; label: string }[] = [
 ]
 
 const NAV_LINKS = [
-  { key: 'nav_features'   as const, href: '#features'   },
-  { key: 'nav_how'        as const, href: '#how'         },
-  { key: 'nav_industries' as const, href: '#industries'  },
-  { key: 'nav_pricing'    as const, href: '#pricing'     },
-  { key: 'nav_download'   as const, href: '#download'    },
+  { key: 'nav_features'   as const, href: '/#features',    internal: false },
+  { key: 'nav_how'        as const, href: '/how-it-works', internal: true  },
+  { key: 'nav_industries' as const, href: '/#industries',  internal: false },
+  { key: 'nav_pricing'    as const, href: '/#pricing',     internal: false },
+  { key: 'nav_download'   as const, href: '/#download',    internal: false },
 ]
+
+const linkStyle = {
+  color: '#4A5250',
+  textDecoration: 'none',
+  fontSize: '14px',
+  fontWeight: 500,
+  transition: 'color 0.15s',
+} as const
 
 export default function Nav() {
   const { lang, setLang } = useLang()
+  const location = useLocation()
 
   return (
     <nav style={{
@@ -29,7 +39,7 @@ export default function Nav() {
     }}>
 
       {/* LOGO */}
-      <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '9px', textDecoration: 'none' }}>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '9px', textDecoration: 'none' }}>
         <svg width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
           <rect width="64" height="64" rx="14" fill="#D6EDE4"/>
           <rect x="10" y="10" width="44" height="44" rx="10" fill="#1D9E75"/>
@@ -40,20 +50,37 @@ export default function Nav() {
         <span style={{ fontSize: '16px', fontWeight: 700, color: '#1A1D1B', letterSpacing: '-0.2px' }}>
           HACC<span style={{ color: '#1D9E75' }}>Print</span>
         </span>
-      </a>
+      </Link>
 
       {/* LINKS */}
       <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}>
         {NAV_LINKS.map(link => (
           <li key={link.key}>
-            <a
-              href={link.href}
-              style={{ color: '#4A5250', textDecoration: 'none', fontSize: '14px', fontWeight: 500 }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#1D9E75')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#4A5250')}
-            >
-              {t(link.key, lang)}
-            </a>
+            {link.internal ? (
+              <Link
+                to={link.href}
+                style={{
+                  ...linkStyle,
+                  color: location.pathname === '/how-it-works' ? '#1D9E75' : '#4A5250',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#1D9E75')}
+                onMouseLeave={e => {
+                  e.currentTarget.style.color =
+                    location.pathname === '/how-it-works' ? '#1D9E75' : '#4A5250'
+                }}
+              >
+                {t(link.key, lang)}
+              </Link>
+            ) : (
+              <a
+                href={link.href}
+                style={linkStyle}
+                onMouseEnter={e => (e.currentTarget.style.color = '#1D9E75')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#4A5250')}
+              >
+                {t(link.key, lang)}
+              </a>
+            )}
           </li>
         ))}
       </ul>
