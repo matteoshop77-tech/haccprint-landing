@@ -1,26 +1,23 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LangProvider } from './lib/LangContext'
 import Nav from './components/Nav'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import HowItWorks from './components/HowItWorks'
-import Industries from './components/Industries'
-import Pricing from './components/Pricing'
-import Download from './components/Download'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import HowItWorks from './pages/HowItWorks'
 
 export default function App() {
   return (
     <LangProvider>
-      <div style={{ background: '#F7F8F6', minHeight: '100vh' }}>
-        <Nav />
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <Industries />
-        <Pricing />
-        <Download />
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <div style={{ background: '#F7F8F6', minHeight: '100vh' }}>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
+          </Routes>
+          <Footer />
+        </div>
+      </BrowserRouter>
     </LangProvider>
   )
 }

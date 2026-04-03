@@ -88,6 +88,30 @@ export const translations = {
   footer_terms:   { en: 'Terms', hu: 'Feltételek' },
   footer_contact: { en: 'Contact', hu: 'Kapcsolat' },
   footer_copy:    { en: '© 2025 HACCPrint. All rights reserved.', hu: '© 2025 HACCPrint. Minden jog fenntartva.' },
+// HOW IT WORKS PAGE
+  hiw_hero_title:   { en: 'See HACCPrint in action', hu: 'A HACCPrint működés közben' },
+  hiw_hero_sub:     { en: 'Everything you need to print professional HACCP labels — fast, simple, compliant.', hu: 'Minden, amire szükséged van a professzionális HACCP cimkék nyomtatásához — gyorsan, egyszerűen, szabályosan.' },
+
+  hiw_s1_title:     { en: 'Create your labels in seconds', hu: 'Hozd létre a cimkéidet másodpercek alatt' },
+  hiw_s1_body:      { en: 'Adding a new label is simple: choose the type (Érvényes, Termék leírás or Custom), enter the product name, category, shelf life and any allergens. HACCPrint calculates the expiry date automatically. Your label is ready to print instantly.', hu: 'Új cimke hozzáadása egyszerű: válaszd ki a típust (Érvényes, Termék leírás vagy Egyéni), add meg a termék nevét, kategóriáját, eltarthatóságát és az allergéneket. A HACCPrint automatikusan kiszámolja a lejárati dátumot. A cimkéd azonnal nyomtatásra kész.' },
+
+  hiw_s2_title:     { en: 'What you see is what you print', hu: 'Amit látsz, azt nyomtatod' },
+  hiw_s2_body:      { en: 'Before every print job, HACCPrint shows you an exact preview of the label — product name, preparation date, expiry date and allergens — exactly as it will appear on the thermal label. No surprises, no wasted labels.', hu: 'Minden nyomtatás előtt a HACCPrint megmutatja a cimke pontos előnézetét — terméknév, elkészítési dátum, lejárati dátum és allergének — pontosan úgy, ahogy a termikus cimkén fog megjelenni. Nincs meglepetés, nincs felesleges veszteség.' },
+
+  hiw_s3_title:     { en: 'Your kitchen, always under control', hu: 'A konyhád mindig kézben tartva' },
+  hiw_s3_body:      { en: 'The dashboard gives you a real-time overview: how many labels printed today, what expires tomorrow, your saved templates ready for one-click reprinting. The Brother QL-800 connection status is always visible at a glance.', hu: 'Az irányítópult valós idejű áttekintést nyújt: hány cimkét nyomtattál ma, mi jár le holnap, a mentett sablonjaid egy kattintással újranyomtathatók. A Brother QL-800 kapcsolat állapota mindig egyetlen pillantással látható.' },
+
+  hiw_s4_title:     { en: 'Organize everything with categories', hu: 'Szervezz mindent kategóriákkal' },
+  hiw_s4_body:      { en: 'Create custom categories for your kitchen — Levesek, Főételek, Desszertek and more. Every label is linked to a category, making it fast to find, filter and reprint exactly what you need, even during a busy service.', hu: 'Hozz létre egyéni kategóriákat a konyhádnak — Levesek, Főételek, Desszertek és még sok más. Minden cimke egy kategóriához kapcsolódik, így gyorsan megtalálhatod, szűrheted és újranyomtathatod, amire szükséged van, még a forgalmas szolgálat közben is.' },
+
+  hiw_s5_title:     { en: 'Built for your industry', hu: 'A te iparágadra építve' },
+  hiw_s5_body:      { en: 'Choose your industry profile — Restaurant, Hotel, Bakery or Pharmacy — and HACCPrint adapts automatically. Label types, terminology and default fields change to match your workflow. Switch anytime from Settings with one tap.', hu: 'Válaszd ki az iparági profilodat — Étterem, Hotel, Pékség vagy Gyógyszertár — és a HACCPrint automatikusan alkalmazkodik. A cimketípusok, a terminológia és az alapértelmezett mezők a munkafolyamatodhoz igazodnak. Bármikor válthatsz a Beállításokban egyetlen érintéssel.' },
+
+  hiw_s6_title:     { en: 'Export your HACCP log anytime', hu: 'Exportáld a HACCP naplót bármikor' },
+  hiw_s6_body:      { en: 'Every label printed is automatically recorded in your HACCP log with date, time, operator and expiry. When an inspector arrives, export the full log as a CSV file in seconds — filtered by date range, ready to hand over.', hu: 'Minden nyomtatott cimke automatikusan rögzül a HACCP naplóban dátummal, időponttal, kezelővel és lejárattal. Ha ellenőr érkezik, exportáld a teljes naplót CSV fájlként másodpercek alatt — dátumtartomány szerint szűrve, átadásra készen.' },
+
+  hiw_cta_title:    { en: 'Ready to print your first label?', hu: 'Készen állsz az első cimkéd nyomtatására?' },
+  hiw_cta_sub:      { en: 'Download HACCPrint and start your 14-day free trial. No credit card required.', hu: 'Töltsd le a HACCPrint-et és kezdd el a 14 napos ingyenes próbát. Bankkártya nem szükséges.' },
 } as const
 
 export type TranslationKey = keyof typeof translations
