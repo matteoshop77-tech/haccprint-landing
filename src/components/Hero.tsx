@@ -58,7 +58,7 @@ export default function Hero() {
 
       {/* CTA */}
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-        
+        <a
           href={DOWNLOAD_URL}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '9px',
@@ -75,7 +75,7 @@ export default function Hero() {
           </svg>
           {t('hero_cta', lang)}
         </a>
-        
+        <a
           href="#how"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '7px',

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useLang } from '../lib/LangContext'
 import { t } from '../lib/i18n'
 import type { Lang } from '../lib/i18n'
@@ -18,7 +17,6 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const { lang, setLang } = useLang()
-  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <nav style={{
@@ -44,11 +42,11 @@ export default function Nav() {
         </span>
       </a>
 
-      {/* LINKS — desktop */}
+      {/* LINKS */}
       <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}>
         {NAV_LINKS.map(link => (
           <li key={link.key}>
-            
+            <a
               href={link.href}
               style={{ color: '#4A5250', textDecoration: 'none', fontSize: '14px', fontWeight: 500 }}
               onMouseEnter={e => (e.currentTarget.style.color = '#1D9E75')}

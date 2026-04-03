@@ -36,7 +36,7 @@ export default function Download() {
         </p>
 
         {/* Bottone download */}
-        
+        <a
           href={DOWNLOAD_URL}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '9px',

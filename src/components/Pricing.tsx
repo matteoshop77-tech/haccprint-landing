@@ -75,7 +75,7 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            
+            <a
               href={DOWNLOAD_URL}
               style={{
                 display: 'block', textAlign: 'center',
@@ -123,7 +123,7 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            
+            <a
               href={DOWNLOAD_URL}
               style={{
                 display: 'block', textAlign: 'center',

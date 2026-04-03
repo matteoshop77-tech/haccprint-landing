@@ -41,7 +41,7 @@ export default function Footer() {
             { key: 'footer_terms'   as const, href: '#' },
             { key: 'footer_contact' as const, href: '#' },
           ].map(link => (
-            
+            <a
               key={link.key}
               href={link.href}
               style={{ fontSize: '12px', color: '#8A9490', textDecoration: 'none', transition: 'color 0.15s' }}
