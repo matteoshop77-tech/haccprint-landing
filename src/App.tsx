@@ -4,11 +4,13 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import HowItWorks from './pages/HowItWorks'
+import ScrollToTop from './lib/ScrollToTop'
 
 export default function App() {
   return (
     <LangProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <div style={{ background: '#F7F8F6', minHeight: '100vh' }}>
           <Nav />
           <Routes>
