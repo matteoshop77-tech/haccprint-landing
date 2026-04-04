@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useLang } from '../lib/LangContext'
 import { t } from '../lib/i18n'
 import type { Lang } from '../lib/i18n'
@@ -9,11 +9,11 @@ const LANGS: { code: Lang; label: string }[] = [
 ]
 
 const NAV_LINKS = [
-  { key: 'nav_features'   as const, href: '/#features',    internal: false },
-  { key: 'nav_how'        as const, href: '/how-it-works', internal: true  },
-  { key: 'nav_industries' as const, href: '/#industries',  internal: false },
-  { key: 'nav_pricing'    as const, href: '/#pricing',     internal: false },
-  { key: 'nav_download'   as const, href: '/#download',    internal: false },
+  { key: 'nav_features'   as const, anchor: 'features'    },
+  { key: 'nav_how'        as const, anchor: null           },
+  { key: 'nav_industries' as const, anchor: 'industries'   },
+  { key: 'nav_pricing'    as const, anchor: 'pricing'      },
+  { key: 'nav_download'   as const, anchor: 'download'     },
 ]
 
 const linkStyle = {
@@ -22,11 +22,29 @@ const linkStyle = {
   fontSize: '14px',
   fontWeight: 500,
   transition: 'color 0.15s',
+  cursor: 'pointer',
+  background: 'none',
+  border: 'none',
+  padding: 0,
+  fontFamily: 'inherit',
 } as const
 
 export default function Nav() {
   const { lang, setLang } = useLang()
   const location = useLocation()
+  const navigate = useNavigate()
+
+  function handleAnchorClick(anchor: string) {
+    if (location.pathname !== '/') {
+      // Naviga SPA verso home, poi scrolla dopo il render
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth' })
+      }, 80)
+    } else {
+      document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <nav style={{
@@ -56,9 +74,10 @@ export default function Nav() {
       <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}>
         {NAV_LINKS.map(link => (
           <li key={link.key}>
-            {link.internal ? (
+            {link.anchor === null ? (
+              // Link /how-it-works — navigazione SPA normale
               <Link
-                to={link.href}
+                to="/how-it-works"
                 style={{
                   ...linkStyle,
                   color: location.pathname === '/how-it-works' ? '#1D9E75' : '#4A5250',
@@ -72,14 +91,15 @@ export default function Nav() {
                 {t(link.key, lang)}
               </Link>
             ) : (
-              <a
-                href={link.href}
+              // Link ancora — mai ricaricare la pagina
+              <button
+                onClick={() => handleAnchorClick(link.anchor!)}
                 style={linkStyle}
                 onMouseEnter={e => (e.currentTarget.style.color = '#1D9E75')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#4A5250')}
               >
                 {t(link.key, lang)}
-              </a>
+              </button>
             )}
           </li>
         ))}
