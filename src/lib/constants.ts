@@ -1,4 +1,4 @@
-export const DOWNLOAD_URL = '#' // sostituisci con il link reale quando hai l'installer
+export const DOWNLOAD_URL = 'https://github.com/matteoshop77-tech/haccp-print/releases/download/v1.0.0/HACCPrint_1.0.0_x64-setup.exe'
 
 export const BRAND = {
   color:       '#1D9E75',
